@@ -93,10 +93,13 @@ for item in minha_lista:
                 
                 break
 
+data=[]
 print('\n\n')
 for pag_cont in range(len(livros_json)):
-    arquivo_final = '{"id": "'+livros_json[pag_cont][1]+'", "titulo": "'+livros_json[pag_cont][3]+'", "epub": "'+livros_json[pag_cont][5]+'", "pdf": "'+livros_json[pag_cont][7]+'", "mobi": "'+livros_json[pag_cont][9]+'", "online": "'+livros_json[pag_cont][11]+'"}'
+    arquivo_final = '{"id":"'+livros_json[pag_cont][1]+'","titulo":"'+livros_json[pag_cont][3]+'","epub":"'+livros_json[pag_cont][5]+'","pdf":"'+livros_json[pag_cont][7]+'","mobi":"'+livros_json[pag_cont][9]+'","online":"'+livros_json[pag_cont][11]+'"}'
     arquivo_final_json = json.loads(arquivo_final)
     print (json.dumps(arquivo_final_json,ensure_ascii=False, indent = 1))
-    with open('arquivo_json_formatado.json', 'a', encoding='utf-8') as json_file:
-        json.dump(json.loads(arquivo_final), json_file, ensure_ascii=False, indent = 1)
+    data.append(json.dumps(json.loads(arquivo_final),ensure_ascii=False, indent = 1))
+
+with open('arquivo_json_formatado.json', 'w', encoding='utf-8') as json_file:
+     json.dump(data, json_file, ensure_ascii=False, indent = 1)
